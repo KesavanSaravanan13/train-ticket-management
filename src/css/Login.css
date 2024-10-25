@@ -1,1 +1,33 @@
 
+.login{
+    width: 400px;
+}
+
+.input-error {
+    border: 2px solid red;
+}
+
+.message-error {
+    color: red !important;
+    font-size: 11.2px "Open Sans Regular";
+}
+
+.loginButton{
+    border: none;
+    border-radius: 30px;
+    background-color: #26457C;
+}
+
+.field{
+    border: 0.1rem solid black;
+    border-radius: 30px;
+}
+
+.forgetPassword{
+    font-size: small;
+}
+
+.copyRight{
+    font-size: 5px;
+    color: gray;
+}

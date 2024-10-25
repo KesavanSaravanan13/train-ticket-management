@@ -13,7 +13,7 @@ const IndexPage = () => {
                 </Row>
 
             </Col>
-            <Col className="m-0 p-0 col-6 rightIndexPage">
+            <Col className="m-0 p-0 col-6 rightIndexPage d-flex justify-content-center">
                 <Login />
             </Col>
         </Row>

@@ -9,3 +9,10 @@ export const PrivateRouteLogin = () => {
         !isAuthenticated ? <Outlet /> : <Dashboard />
     );
 }
+
+export const PrivateRouteOther = () => {
+    const isAuthenticated = localStorage.getItem('token');
+    return (
+        isAuthenticated ? <Outlet /> : <Dashboard />
+    );
+}

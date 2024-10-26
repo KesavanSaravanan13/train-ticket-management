@@ -39,3 +39,8 @@
     letter-spacing: 3px;
     color: rgb(172, 172, 172);
 }
+
+.custom-spinner{
+    width: 1rem;
+    height: 1rem; 
+}

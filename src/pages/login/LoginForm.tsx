@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createProducts } from "../../utils/API/AxiosCall";
 import '../../css/Login.css';
+import Logo from '../../assests/Logo.png';
 
 export type FormInput = {
     name: string;
@@ -58,18 +59,18 @@ const LoginForm = () => {
                 setToken(values)
             }}
         >
-            {({ values, errors, touched }) => (
+            {({ errors, touched }) => (
                 <Form>
                     <Row className='m-0 p-0'>
-                        <Col className='m-0 p-0 pt-5 mb-1 text-center'><h4 className='m-0 p-0'>Login</h4></Col>
+                        <Col className='m-0 p-0 py-3 mb-1 text-center'><img src={Logo} width={'150px'}/></Col>
                         <label className='m-0 ps-1 p-0'>Please enter your User name and Password</label>
-                        <FieldForm values={values} errors={errors} touched={touched} loginInput={loginInput} />
+                        <FieldForm errors={errors} touched={touched} loginInput={loginInput} />
                         <LoginButton message={clicked ? 'clicked' : 'normal'} />
                         <Col className='m-0 p-0 pb-5 pt-1 text-end d-flex justify-content-between'>
                         <label className='m-0 ps-3 p-0 forgetPassword'>Don't hav an Account?  <a href='/' className="m-0 p-0 ">Sign up</a></label>
                         <a href='/' className="m-0 p-0 pe-3 forgetPassword">Forget Password?</a></Col>
                         <Col className="m-0 p-0 col-12">
-                        <h6 className="m-0 p-0 copyRight">@2024 Train Ticket Management</h6>
+                        <h6 className="m-0 p-0 copyRight text-center">@2024 Train Ticket Management</h6>
                         </Col>
                     </Row>
                 </Form>

@@ -5,6 +5,7 @@
 
 .input-error {
     border: 2px solid red;
+    border-radius: 30px;
 }
 
 .message-error {
@@ -15,19 +16,26 @@
 .loginButton{
     border: none;
     border-radius: 30px;
-    background-color: #26457C;
+    background-color: #DF0000;
 }
 
 .field{
-    border: 0.1rem solid black;
+    border: none;
     border-radius: 30px;
 }
 
+.inputField{
+    border: 0.2px solid black;
+    border-radius: 30px;
+    box-shadow: none;
+}
 .forgetPassword{
     font-size: small;
 }
 
 .copyRight{
-    font-size: 5px;
-    color: gray;
+    font-size: 10px;
+    font-weight: 50;
+    letter-spacing: 3px;
+    color: rgb(172, 172, 172);
 }

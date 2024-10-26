@@ -1,5 +1,29 @@
 
 
 .rightIndexPage{
-    background-color: #26457C;
+    background-color: #DF0000;
+    background-image: url('../assests/indian-railway.jpg');
+    background-repeat: no-repeat;
+}
+
+.slideButton{
+    border: 1px solid rgb(175, 175, 175);
+    background-color: rgb(175, 175, 175);
+    margin-top: 30px;
+    margin: 10px;
+    width: 30px;
+    border-radius: 25px;
+}
+
+.carousel-inner{
+    top: 50px;
+    right: -180px;
+    height: 300px;
+    width: 400px;
+}
+
+.carousel-item img{
+    border-radius: 25px;
+    height: 200px;
+    width: 350px;
 }

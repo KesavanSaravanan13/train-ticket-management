@@ -1,10 +1,13 @@
+import { Col, Row } from "react-bootstrap";
 
 
 const Dashboard = () => {
     return (
-        <div>
-            HI
-        </div>
+        <Row className="m-0 p-0">
+            <Col className="m-0 p-0">
+                
+            </Col>
+        </Row>
     );
 }
 

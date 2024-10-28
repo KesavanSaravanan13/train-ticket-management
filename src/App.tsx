@@ -2,6 +2,7 @@ import './App.css';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { PrivateRouteLogin, PrivateRouteOther } from './pages/private-route/PrivateRouteLogin';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import IndexPage from './pages/login/IndexPage';
 import Dashboard from './pages/dashboard/Dashboard';
 

@@ -3,9 +3,14 @@
     overflow: hidden;
 }
 
+/* .TopColumn{
+    background-color: red;
+    height: 478px;
+} */
+
 .background-video {
     position: absolute;
-    top: 200px;
+    top: 50%;
     left: 50%;
     min-width: 100%;
     width: auto;
@@ -14,13 +19,142 @@
     transform: translate(-50%, -50%);
 }
 
+
 .menuButton{
     position: relative;
     background-color: white !important;
-    opacity: 50% !important;
-    z-index: -1;
-    border: none !important;
+    opacity: 75% !important;
+    z-index: 1;
+    border: 3px solid red !important;
     border-radius: 100% !important;
-    left:30px;
+    left:35px;
     top:30px
+}
+
+.menu{
+    
+    position: relative;
+    top: 100px !important;
+    left: 30px !important;
+    transition: 500ms ease;
+}
+.menuHidden{
+    transition: 500ms ease;
+    position: relative;
+    top: 100px !important;
+    left: -70px !important;
+}
+
+.menuItem{
+    position: relative;
+    top: 0px !important;
+    left: 0px !important;
+    background-color: white !important;
+    border: 3px solid red !important;
+    border-radius: 50% !important;
+}
+
+.menuName{
+    position: absolute;
+    top: 5px;
+    border-radius: 25px;
+    width: 180px !important;
+    z-index: -1;
+    background-color: white;
+}
+
+.menu .row{
+    width: 200px !important;
+}
+
+.hide{
+    transition: 500ms ease;
+    width: 15px !important;
+    overflow: hidden;
+    height: 40px !important;
+}
+
+.show{
+    /* z-index: 2; */
+    transition: 500ms ease;
+    overflow: hidden;
+}
+
+.searchBoxContainer{
+    position: relative;
+    top: 20px;
+    box-shadow: 0 0 10px rgb(255, 0, 0);
+    border-radius: 25px;
+    height: 200px;
+}
+
+input , input:focus{
+    border: 2px solid red;
+    border-radius: 10px;
+    box-shadow: none;
+    outline: none;
+}
+
+
+.searchButton{
+    background-color: red !important;
+    color: white;
+    border: none !important;
+    border-radius: 15px !important;
+}
+
+.profileSection{
+    position: relative;
+    top: 35px;
+    right: 20px;
+    width: 200px;
+    border: none;
+    box-shadow: 0 0 10px rgb(255, 0, 0);
+    height: fit-content !important;
+}
+
+.dpRow{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.hideProfile {
+    width: 60px !important;
+    overflow: hidden;
+    border-radius: 50% !important;
+    transition: width 5s ease, border-radius 0.5s ease;
+}
+
+.showProfile {
+    width: 200px !important;
+    border-radius: 30px !important;
+    transition: width 5s ease, border-radius 0.5s ease;
+}
+
+.hideUserName {
+    display: none;
+}
+
+.showUserName {
+    display: inline;
+}
+
+
+.profileSection img {
+    transition: transform 0.5s ease;
+}
+.hideProfile img {
+    transform: scale(1.0);
+}
+.showProfile img {
+    transform: scale(1.2);
+}
+
+
+.profileSection:focus , button:focus{
+    outline: none !important;
+    outline-offset: none !important;
+    box-shadow: none !important;
+    border: none !important;
 }

@@ -45,8 +45,25 @@ const Dashboard = () => {
                         </Col>
                     </Col>
                 </Row>
-                <Row className='m-0 p-0'>
+                <Row className='m-0 p-0 mt-5'>
+                    <Col className='m-0 p-0 col-2 followBanner d-flex justify-content-center align-items-center'>
+                        <h4 className='m-0 p-0 fw-bold text-center'>Follow <br />the<br /> Guidelines!</h4>
+                    </Col>
+                    <Col className='m-0 p-3 guideLine'>
+                        <p className='m-0 p-3 text-white'>
+                            Here’s a quick guide for booking a train ticket online:<br /><br />
 
+                            <h6 className='m-0 p-0 ps-3 d-inline'>Use Trusted Platforms:</h6> Book through official sites (e.g., IRCTC) or verified apps.<br />
+                            <h6 className='m-0 p-0 ps-3 d-inline'>Log In:</h6> Create an account or log in if you already have one.<br />
+                            <h6 className='m-0 p-0 ps-3 d-inline'>Search and Select:</h6> Enter travel details, choose a train and class (e.g., SL, 3A, 2A).<br />
+                            <h6 className='m-0 p-0 ps-3 d-inline'>Check Quota:</h6> Confirm seat availability and waitlist status.<br />
+                            <h6 className='m-0 p-0 ps-3 d-inline'>Enter Passenger Info:</h6> Accurately fill in all required details.<br />
+                            <h6 className='m-0 p-0 ps-3 d-inline'>Payment:</h6> Review and confirm before making payment.<br />
+                            <h6 className='m-0 p-0 ps-3 d-inline'>Download Ticket:</h6> Save or print your e-ticket.<br />
+                            <h6 className='m-0 p-0 ps-3 d-inline'>Travel Prepared:</h6> Carry a valid ID and reach the station on time.<br /><br />
+                            Always follow cancellation policies if plans change.<br />
+                        </p>
+                    </Col>
                 </Row>
 
             </Col>

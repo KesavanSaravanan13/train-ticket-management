@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import IndexPage from './pages/login/IndexPage';
 import Dashboard from './pages/dashboard/Dashboard';
+import UserProfile from './pages/user-profile/UserProfile';
 
 
 function App() {
@@ -12,10 +13,11 @@ function App() {
     <Router>
       <Routes>
         <Route element={<PrivateRouteLogin />}>
-          <Route path='/' element={<IndexPage />} />
+          <Route path='/login' element={<IndexPage />} />
         </Route>
         <Route element={<PrivateRouteOther />}>
           <Route path='/dashboard' element={<Dashboard />} />
+          <Route path='/userProfile' element={<UserProfile/>} />
         </Route>
       </Routes>
     </Router>

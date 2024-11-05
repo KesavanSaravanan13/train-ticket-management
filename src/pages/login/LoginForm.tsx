@@ -62,8 +62,8 @@ const LoginForm = () => {
             {({ errors, touched }) => (
                 <Form>
                     <Row className='m-0 p-0'>
-                        <Col className='m-0 p-0 py-3 mb-1 text-center'><img src={Logo} width={'150px'}/></Col>
-                        <label className='m-0 ps-1 p-0'>Please enter your User name and Password</label>
+                        <Col className='m-0 p-0 py-3 mb-1 text-center'><img src={Logo} width={'150px'} alt={"Logo"}/></Col>
+                        <label className='m-0 ps-1 p-2'>Please enter your User name and Password</label>
                         <FieldForm errors={errors} touched={touched} loginInput={loginInput} />
                         <LoginButton message={clicked ? 'clicked' : 'normal'} />
                         <Col className='m-0 p-0 pb-5 pt-1 text-end d-flex justify-content-between'>

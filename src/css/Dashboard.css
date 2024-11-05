@@ -3,8 +3,8 @@
     overflow: hidden;
     background-image: url('../../src/assests/dashboard-background.jpg');
     background-repeat: no-repeat;
+    background-size: cover;
     z-index: 0;
-    /* background-size: cover; */
 }
 
 /* .input-error-button {
@@ -123,8 +123,6 @@
     box-shadow: 0 0 10px rgb(255, 0, 0);
     border-radius: 25px;
     height: fit-content;
-    border-bottom-right-radius: 0 !important;
-    border-top-right-radius: 0 !important;
 }
 
 input,
@@ -140,12 +138,13 @@ input:focus {
     border: 1ps solid red;
     border-top-left-radius: 25px;
     border-bottom-left-radius: 25px;
-    width: 150px !important;
+    width: 140px !important;
     margin-right: 1px !important;
+    align-items: center !important;
 
 }
 
-.inputField, .input-error-button {
+.inputFieldDashboard, .input-error-button {
     background-color: white !important;
     border: none !important;
     border-radius: 0px !important;
@@ -153,11 +152,14 @@ input:focus {
     border-bottom-right-radius: 25px !important;
     outline: none !important;
     box-shadow: none !important;
-    width: 250px !important;
+    width: 50% !important;
 }
 
+
 .notice{
-    border: 2px solid white;
+    border: 5px solid red;
+    color: white;
+    border-bottom-right-radius: 25px;
 }
 
 .searchButton {
@@ -229,13 +231,21 @@ input:focus {
 
 .weatherBox {
     background-color: white;
-    border-radius: 25px;
     height: fit-content;
     width: fit-content;
     box-shadow: 0 0 10px rgb(255, 0, 0);
+    border-top-right-radius: 25px;
 }
 
 .topFirstRow {
     background-color: rgba(27, 27, 27, 0.5);
     border-radius: 25px;
+}
+
+.topRow{
+    height: 300px !important;
+}
+
+p{
+    font-size: small;
 }

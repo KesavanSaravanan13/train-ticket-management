@@ -21,7 +21,7 @@ const Dashboard = () => {
 
     return (
         <Row className="m-0 p-0 vh-100 dashboard-container">
-            <Col className="m-0 p-0 col-2">
+            <Col className="m-0 p-0 col" style={{ width: "150px" }}>
                 <Button className={`btn m-0 p-1 menuButton ${menuButton ? 'menuNormal' : 'menuFocus'}`}
                     onMouseEnter={() => { setMenuButton(!menuButton) }}
                     onMouseLeave={() => { setMenuButton(!menuButton) }}
@@ -35,14 +35,18 @@ const Dashboard = () => {
                 </Col>
             </Col>
             <Col className='m-0 p-0 col-8'>
-                <Row className='m-0 p-4 mt-4 d-flex justify-content-between align-items-center topFirstRow'>
-                    <Col className='m-0 p-0 col-9'>
+                <Row className='m-0 p-2 mt-4 d-flex justify-content-between align-items-center topFirstRow'>
+                    <Col className='m-0 p-0 col-10' >
                         <TopRow />
                     </Col>
-                    <Weather city={'India'} />
+                    <Col className='m-0 p-0'>
+                        <Weather city={'India'} />
+                        <Col className="m-0 p-2 mt-2 pt-1 notice col-12 "><p>Note : </p>Only General seats are Available!!!
+                        </Col>
+                    </Col>
                 </Row>
                 <Row className='m-0 p-0'>
-                    
+
                 </Row>
 
             </Col>

@@ -1,9 +1,13 @@
 import * as Yup from "yup";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { Col, Row } from "react-bootstrap";
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import axios from "axios";
 
+interface TopRowProps {
+    setShowSearch: (value: boolean) => void;
+    setValues : (value:initialValuesType)=> void;
+}
 
 interface Place {
     placeId: string;
@@ -11,8 +15,14 @@ interface Place {
     noOfStations: number;
     status: boolean;
 }
+export interface initialValuesType {
+    from: string,
+    to: string,
+    date: string,
+    seat: string
+};
 
-const TopRow: React.FC = () => {
+const TopRow: React.FC<TopRowProps> = ({ setShowSearch , setValues }) => {
 
     const [place, setPlace] = useState<Place[]>([]);
 
@@ -59,6 +69,13 @@ const TopRow: React.FC = () => {
         { placeholder: 'Select class', name: 'seat' }
 
     ];
+
+    const startSearch = (values: initialValuesType) => {
+        setShowSearch(true);
+        setValues(values);
+    }
+
+
     return (
         <Row className='m-0 p-3 topRow' >
             <Col className='m-0 p-1 searchBoxContainer col-12'>
@@ -71,7 +88,7 @@ const TopRow: React.FC = () => {
                         seat: Yup.string().required()
                     })}
                     onSubmit={(values) => {
-
+                        startSearch(values);
                     }}
                 >
                     {({ errors, touched }) => (

@@ -146,7 +146,8 @@ input:focus {
 
 }
 
-.inputFieldDashboard, .input-error-button {
+.inputFieldDashboard,
+.input-error-button {
     background-color: white !important;
     border: none !important;
     border-radius: 0px !important;
@@ -159,11 +160,11 @@ input:focus {
     color: gray;
 }
 
-.inputFieldDashboard option{
+.inputFieldDashboard option {
     color: black !important;
 }
 
-.notice{
+.notice {
     border: 5px solid red;
     color: white;
     border-bottom-right-radius: 25px;
@@ -249,24 +250,24 @@ input:focus {
     border-radius: 25px;
 }
 
-.topRow{
+.topRow {
     height: 300px !important;
 }
 
-p{
+p {
     font-size: small;
 }
 
-.guideLine{
+.guideLine {
     background-color: rgba(27, 27, 27, 0.5);
     border-radius: 25px;
     width: fit-content;
-    
+
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
 }
 
-.guideLine p{
+.guideLine p {
     font-size: medium;
     background-color: rgb(184, 26, 26);
     border-radius: 25px;
@@ -274,10 +275,117 @@ p{
     border-bottom-left-radius: 0px;
 }
 
-.followBanner{
+.followBanner {
     border: 3px solid rgb(184, 26, 26);
     background-color: white;
     border-top-left-radius: 25px;
     border-bottom-left-radius: 25px;
 }
 
+
+.searchResultRow {
+    background-color: rgb(128, 128, 128, 0.8);
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+
+.searchResult {
+    border: none;
+    border-radius: 25px;
+    background-color: white;
+    box-shadow: 0 0 20px rgb(59, 59, 59);
+    width: 100%;
+    height: fit-content;
+}
+
+.closeButton {
+    border: none !important;
+    border-radius: 100%;
+}
+
+.closeButton:focus,
+.closeButton:hover {
+    box-shadow: 0 0 10px white !important;
+}
+
+.focusButton {
+    transform: scale(1.0);
+    transition: transform 500ms ease;
+}
+
+.normalButton {
+    transform: scale(0.8);
+    transition: transform 500ms ease;
+}
+
+.tNum {
+    width: fit-content !important;
+}
+
+.resultTrain {
+    width: fit-content !important;
+    height: 600px;
+    overflow-y: auto;
+    background-color: rgb(150, 150, 150,0.5);
+}
+.resultTrain::-webkit-scrollbar {
+    width: 5px;
+    height: 5px !important;
+}
+
+.resultTrain::-webkit-scrollbar-thumb {
+    background-color: rgb(204, 204, 204);
+    border-radius: 5px;
+}
+
+.resultTrain::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.resultTrain::-webkit-scrollbar-thumb:hover {
+    background-color: white;
+}
+
+/* hr {
+    display: inline-block;
+    width: 250px;
+    border: 1px solid black;
+    margin: 0 10px;
+} */
+
+.slTop{
+    border: none !important;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    background-color: rgb(252, 185, 60);
+}
+
+.slBottom{
+    background-color: rgb(245, 203, 127);
+    padding: 30px;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+
+
+.keyTrain{
+    background-color: rgb(255, 255, 255);
+    border: none !important;
+    border-radius: 25px !important;
+}
+
+.btnTicket{
+    border: none;
+    outline: none;
+    box-shadow: none;
+    outline-offset: none;
+    background-color: transparent;
+    width: 300px;
+    border-radius: 25px;
+}
+
+.btnTicket:hover{
+    box-shadow: 0 0 10px rgb(252, 185, 60);;
+}

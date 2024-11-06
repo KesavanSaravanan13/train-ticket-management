@@ -53,8 +53,6 @@ const Dashboard = () => {
                         <p className='m-0 p-3 text-white'>
                             Here’s a quick guide for booking a train ticket online:<br /><br />
 
-                            <h6 className='m-0 p-0 ps-3 d-inline'>Use Trusted Platforms:</h6> Book through official sites (e.g., IRCTC) or verified apps.<br />
-                            <h6 className='m-0 p-0 ps-3 d-inline'>Log In:</h6> Create an account or log in if you already have one.<br />
                             <h6 className='m-0 p-0 ps-3 d-inline'>Search and Select:</h6> Enter travel details, choose a train and class (e.g., SL, 3A, 2A).<br />
                             <h6 className='m-0 p-0 ps-3 d-inline'>Check Quota:</h6> Confirm seat availability and waitlist status.<br />
                             <h6 className='m-0 p-0 ps-3 d-inline'>Enter Passenger Info:</h6> Accurately fill in all required details.<br />

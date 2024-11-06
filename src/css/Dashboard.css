@@ -140,6 +140,8 @@ input:focus {
     border-bottom-left-radius: 25px;
     width: 140px !important;
     margin-right: 1px !important;
+    font-weight: 600;
+    color: rgb(54, 54, 54);
     align-items: center !important;
 
 }
@@ -153,12 +155,13 @@ input:focus {
     outline: none !important;
     box-shadow: none !important;
     width: 50% !important;
+    appearance: none;
+    color: gray;
 }
 
-option{
-    border-radius: 25px !important;
+.inputFieldDashboard option{
+    color: black !important;
 }
-
 
 .notice{
     border: 5px solid red;
@@ -236,7 +239,7 @@ option{
 .weatherBox {
     background-color: white;
     height: fit-content;
-    width: fit-content;
+    /* width: fit-content; */
     box-shadow: 0 0 10px rgb(255, 0, 0);
     border-top-right-radius: 25px;
 }
@@ -278,6 +281,3 @@ p{
     border-bottom-left-radius: 25px;
 }
 
-/* .followBanner h3{
-    color: red;
-} */

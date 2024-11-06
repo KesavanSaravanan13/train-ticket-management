@@ -15,6 +15,10 @@ interface Place {
 const TopRow: React.FC = () => {
 
     const [place, setPlace] = useState<Place[]>([]);
+
+    const [inputValue, setInputValue] = useState();
+    const [showOption, setShowOption] = useState(false);
+
     const initialValues = {
         from: '',
         to: '',
@@ -76,54 +80,57 @@ const TopRow: React.FC = () => {
                             <Col className="m-0 p-0 col-12 d-flex justify-content-between align-items-center flex-wrap">
                                 {formList.map((form, index) => {
                                     return (
-                                        <>
-                                            <Col className={`m-0 p-2 py-2 col-6 inputContainer`} key={index}>
-                                                <label className=" p-3 ps-4 col-6 text-secondary inputBLockLabel text-start">{form.placeholder}</label>
+                                        <Col className={`m-0 p-2 py-2 col-6 inputContainer`} key={index}>
+                                            <label className=" p-3 ps-4 col-6 text-secondary inputBLockLabel text-start">{form.placeholder}</label>
 
-                                                {form.name === "seat" ?
+                                            {form.name === "seat" ?
 
-                                                    // need to take those options from database
+                                                <Field
+                                                    className={`m-0 p-3 ps-3 ${errors.from ? 'input-error-button' : 'inputFieldDashboard'}`}
+                                                    as="select"
+                                                    name={form.name}
+                                                >
+                                                    <option value={''} className="m-0 p-0 d-none firstOption" >Select your seat</option>
+                                                    {seatList.map((list, index) => (
+                                                        <option className="m-0 p-0 pt-3 option" value={list.seat} key={index}>
+                                                            {list.seat}
+                                                        </option>
+                                                    ))}
+                                                </Field>
+
+
+                                                :
+
+                                                form.name === "date" ?
+                                                    <Field name={form.name} type={"date"}
+                                                        className={`col-6 m-0 p-3 ps-3 ${errors.from ? 'input-error-button' : 'inputFieldDashboard'}`}
+                                                        placeholder={form.placeholder}
+                                                    />
+
+                                                    :
 
                                                     <Field
                                                         className={`m-0 p-3 ps-3 ${errors.from ? 'input-error-button' : 'inputFieldDashboard'}`}
                                                         as="select"
                                                         name={form.name}
                                                     >
-                                                        {seatList.map((list, index) => (
-                                                            <option className="m-0 p-0 pt-3" value={list.seat} key={index}>
-                                                                {list.seat}
+                                                        {
+                                                            form.name === 'from' ?
+                                                                <option value={''} className="m-0 p-0 d-none firstOption">Choose From Place</option>
+                                                                :
+                                                                <option value={''} className="m-0 p-0 d-none firstOption">Choose To Place</option>
+                                                        }
+                                                        {place.map((placelist, index) => (
+                                                            <option className="m-0 p-0 pt-3" value={placelist.placeName} key={index}
+                                                                disabled={placelist.status !== true}
+                                                            >
+                                                                {placelist.placeName}
                                                             </option>
                                                         ))}
                                                     </Field>
-
-                                                    :
-                                                    form.name === "date" ?
-                                                        <Field name={form.name} type={"date"}
-                                                            className={`col-6 m-0 p-3 ps-3 ${errors.from ? 'input-error-button' : 'inputFieldDashboard'}`}
-                                                            placeholder={form.placeholder}
-                                                        />
-
-                                                        :
-
-                                                        <Field
-                                                            className={`m-0 p-3 ps-3 ${errors.from ? 'input-error-button' : 'inputFieldDashboard'}`}
-                                                            as="select"
-                                                            name={form.name}
-                                                        >
-                                                            {place.map((placelist, index) => (
-                                                                <option className="m-0 p-0 pt-3" value={placelist.placeName} key={index}
-                                                                disabled={placelist.status !== true}
-                                                                >
-                                                                    {placelist.placeName}
-                                                                </option>
-                                                            ))}
-                                                        </Field>
-
-                                                }
-
-                                                <ErrorMessage name={form.name} component={'div'} className='m-0 p-0 message-error-button' />
-                                            </Col>
-                                        </>
+                                            }
+                                            <ErrorMessage name={form.name} component={'div'} className='m-0 p-0 message-error-button' />
+                                        </Col>
                                     )
                                 })
                                 }

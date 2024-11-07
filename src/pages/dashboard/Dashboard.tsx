@@ -21,8 +21,9 @@ import { time } from 'console';
 //     city: String
 // }
 
-interface trainType {
-    trainNumber: string;
+export interface trainType {
+    trainId:BigInt,
+    trainNumber: number;
     fromPlace: string;
     toPlace: string;
     arriveAt: string;
@@ -124,7 +125,7 @@ const Dashboard = () => {
             <Row className={`m-0 p-3 vh-100 vw-100 searchResultRow ${showSearch ? 'd-flex justify-content-center align-items-center' : 'd-none'}`}>
                 <Col className='m-0 p-0 col-1'>
                 </Col>
-                <Col className='m-0 p-0 col-10 h-100 d-flex align-items-top justify-content-center flex-wrap'>
+                <Col className='m-0 p-0 col-8 h-100 d-flex align-items-top justify-content-center flex-wrap'>
                     <Row className='m-0 p-3 searchResult'>
                         <Col className='m-0 p-0 d-flex justify-content-between'>
                             <Col className='m-0 p-0 col-2'>
@@ -152,7 +153,7 @@ const Dashboard = () => {
                             <h6>Other results from FROM : </h6>
                         </Row>
                     }
-                    <Row className='m-0 p-2 searchResult resultTrain'>
+                    <Row className='m-0 p-2  resultTrain'>
                 
                         {
                             trains.filter(list => (list.fromPlace === values?.from)).map((trainlist, index) => (
@@ -175,42 +176,42 @@ const Dashboard = () => {
                                         </Col>
                                     </Row>
                                     <Row className='m-0 p-0 d-flex justify-content-between'>
-                                        <button className='m-0 p-0 col-3 btnTicket'
+                                        <button className='m-1 p-0 col-3 btnTicket'
                                             onClick={() => {
-
+                                                navigate(`/sl-booking/${trainlist.trainNumber}`);
                                             }}
                                         >
-                                            <Row className='m-0 p-2 slTop d-flex justify-content-between'>
+                                            <Row className='m-0 p-2 px-4 slTop d-flex justify-content-between'>
                                                 <Col className='m-0 p-0 px-2 col-6 fw-bold text-start'>SL</Col>
                                                 <Col className='m-0 p-0 px-2 col-6 fw-bold text-end'>Rs.350</Col>
                                             </Row>
-                                            <Row className='m-0 p-0 slBottom'>
+                                            <Row className='m-0 p-2 px-4 slBottom'>
                                                 <Col className='m-0 p-3 py-4 text-center px-5'>GNWL</Col>
                                             </Row>
                                         </button>
-                                        <button className='m-0 p-0 col-3 btnTicket'
+                                        <button className='m-1 p-0 col-3 btnTicket'
                                             onClick={() => {
-
+                                                navigate(`/two-tier-booking/${trainlist.trainNumber}`);
                                             }}
                                         >
-                                            <Row className='m-0 p-2 slTop d-flex justify-content-between'>
+                                            <Row className='m-0 p-2 px-4 slTop d-flex justify-content-between'>
                                                 <Col className='m-0 p-0 px-2 fw-bold col-6 text-start'>2A</Col>
                                                 <Col className='m-0 p-0 px-2 fw-bold col-6 text-end'>Rs.1250</Col>
                                             </Row>
-                                            <Row className='m-0 p-0 slBottom'>
+                                            <Row className='m-0 p-2 px-4  slBottom'>
                                                 <Col className='m-0 p-3 py-4 text-center px-5'>GNWL</Col>
                                             </Row>
                                         </button>
-                                        <button className='m-0 p-0 col-3 btnTicket'
+                                        <button className='m-1 p-0 col-3 btnTicket'
                                             onClick={() => {
-
+                                                navigate(`/three-tier-booking/${trainlist.trainNumber}`);
                                             }}
                                         >
-                                            <Row className='m-0 p-2 slTop d-flex justify-content-between'>
+                                            <Row className='m-0 p-2 px-4 slTop d-flex justify-content-between'>
                                                 <Col className='m-0 p-0 px-2 fw-bold col-6 text-start'>3A</Col>
                                                 <Col className='m-0 p-0 px-2 fw-bold col-6 text-end'>Rs.2150</Col>
                                             </Row>
-                                            <Row className='m-0 p-0 slBottom'>
+                                            <Row className='m-0 p-2 px-4 slBottom'>
                                                 <Col className='m-0 p-3 py-4 text-center px-5'>GNWL</Col>
                                             </Row>
                                         </button>
@@ -221,7 +222,7 @@ const Dashboard = () => {
 
                     </Row>
                 </Col>
-                <Col className='m-0 p-0 col-1 d-flex justify-content-center'>
+                <Col className='m-0 p-0 col-2 d-flex justify-content-center'>
                     <button className={`m-0 p-2 closeButton`}
                         onMouseEnter={() => { setCloseButton(!closeButton) }}
                         onMouseLeave={() => { setCloseButton(!closeButton) }}

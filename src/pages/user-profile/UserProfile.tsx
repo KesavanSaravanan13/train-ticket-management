@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import axios, { AxiosError } from 'axios';
 import { jwtDecode, JwtPayload } from 'jwt-decode';
 
-interface userListType {
+export interface userListType {
     userId: number,
     userName: string,
     address: string,
@@ -17,7 +17,7 @@ interface userListType {
     email:string
 }
 
-interface CustomJwtPayload extends JwtPayload {
+export interface CustomJwtPayload extends JwtPayload {
     userName?: string;
     username?: string;
     name?: string;

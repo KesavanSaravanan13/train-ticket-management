@@ -45,7 +45,7 @@ const SearchResult: React.FC<searchRsultType> = ({values,showSearch,setShowSearc
         <Row className={`m-0 p-3 vh-100 vw-100 searchResultRow ${showSearch ? 'd-flex justify-content-center align-items-center' : 'd-none'}`}>
                 <Col className='m-0 p-0 col-1'>
                 </Col>
-                <Col className='m-0 p-0 col-8 h-100 d-flex align-items-top justify-content-center flex-wrap'>
+                <Col className='m-0 p-0 col-8 h-100 d-flex align-items-center justify-content-center flex-wrap'>
                     <Row className='m-0 p-3 searchResult'>
                         <Col className='m-0 p-0 d-flex justify-content-between'>
                             <Col className='m-0 p-0 col-2'>
@@ -69,12 +69,11 @@ const SearchResult: React.FC<searchRsultType> = ({values,showSearch,setShowSearc
                         isAvailable ? <></> 
                         : 
                         <Row className='m-0 p-3 searchResult'>
-                            <h6 className='text-danger'>No result found for  " FROM "  and  " TO "</h6>
-                            <h6>Other results from FROM : </h6>
+                            <h6 className='text-danger'>{`No Direct train found for ' ${(values?.from)?.toUpperCase()} ' and  ' ${(values?.to)?.toUpperCase()} ' `}</h6>
+                            <h6>{`Other results from ${(values?.from)?.toUpperCase()} : `}</h6>
                         </Row>
                     }
                     <Row className='m-0 p-2  resultTrain'>
-                
                         {
                             trains.filter(list => (list.fromPlace === values?.from)).map((trainlist, index) => (
                                 <Col className='m-0 mt-3 p-3 col-12 keyTrain' key={index}>

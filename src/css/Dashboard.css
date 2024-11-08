@@ -288,6 +288,7 @@ p {
     position: absolute;
     top: 0px;
     left: 0px;
+    backdrop-filter: blur(10px);
 }
 
 

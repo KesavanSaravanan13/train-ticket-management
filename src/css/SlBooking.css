@@ -1,14 +1,13 @@
-
-
-.trainCol{
+.trainCol {
     border: 10px solid rgba(206, 206, 206, 0.5);
     border-radius: 25px;
     height: 800px;
     overflow-y: auto;
+    background-color: white;
 }
 
-.seatButton{
-    width: 75px ;
+.seatButton {
+    width: 75px;
     height: 100px;
     border: none;
     outline-offset: none;
@@ -16,12 +15,68 @@
     border-radius: 25px;
 }
 
-.compartment{
+.compartment {
     border: 2px solid gray;
     border-radius: 25px;
     width: fit-content;
 }
 
-.notSelected{
-    background-color: rgb(100, 184, 252);
+.notSelected {
+    background-color: rgb(253, 67, 67);
+}
+
+.seatBooking {
+    background-image: url('../../src//assests/dashboard-background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    backdrop-filter: blur(10px);
+    background-color: rgba(243, 121, 121, 0.3) !important;
+}
+
+.viewSeat {
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.3);
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.seatDetailsBox {
+    background-color: white;
+    border: none;
+    border-radius: 25px;
+    height: fit-content;
+
+}
+
+.seatDetailsBox .row {
+    border: none;
+    box-shadow: 0 0 5px rgb(126, 126, 126);
+    border-radius: 25px;
+}
+
+.confirmText{
+    width: fit-content !important;
+}
+
+.confirmButton{
+    border: none;
+    background-color: red;
+    border-radius: 50px;
+    color: white;
+    font-size: large !important;
+    font-weight: 600;
+    width: fit-content;
+    height: fit-content;
+}
+
+.seatDetailsBox .row h6 ,.seatDetailsBox .row h5{
+    color: black;
+}
+
+.closeButton{
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    width: fit-content;
 }

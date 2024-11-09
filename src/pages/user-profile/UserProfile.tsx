@@ -9,7 +9,7 @@ import axios, { AxiosError } from 'axios';
 import { jwtDecode, JwtPayload } from 'jwt-decode';
 
 export interface userListType {
-    userId: number,
+    userId: BigInt,
     userName: string,
     address: string,
     phoneNumber: string,

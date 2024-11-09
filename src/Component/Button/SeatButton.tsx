@@ -21,82 +21,65 @@ type SeatButtonProps = {
 
 const SeatButton: React.FC<SeatButtonProps> = ({ isSeatAvailable, value, seatId, bookSeat }) => {
 
-    const [waitingListData, setWaitingListData] = useState<waitingListType[]>([]);
-    const [waitingList, setWaitingList] = useState<waitingListType>();
+    const [filteredWaitingList, setFilteredWaitingList] = useState<waitingListType[]>([]);
+    const [userId, setUserId] = useState<BigInt>();
 
     useEffect(() => {
-        const token = localStorage.getItem("token");
+        const fetchWaitingList = async () => {
 
-        const getWaitingList = async () => {
-            const waitingListResponse = await axios.get(`http://localhost:8080/api/waitingList`, {
-                headers: {
-                    Authorization: `Bearer ${token}`
+            const token = localStorage.getItem("token");
+            try {
+                const response = await axios.get<waitingListType[]>('http://localhost:8080/api/waitingList', {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+                const waitingListData = response.data;
+
+                const matchingSeats = waitingListData.filter(item => item.seat.seatId === seatId);
+
+                if (matchingSeats.length > 0) {
+                    setFilteredWaitingList(matchingSeats);
                 }
-            });
 
-            console.log("response : ", waitingListResponse.data);
-
-
-            const tempList = waitingListResponse.data;
-
-            console.log("templist : ", tempList);
-
-
-
-            setWaitingListData(tempList);
-
-            console.log("waitingListData : ", waitingListData);
-
-            if (waitingListData) {
-                const tempWaitingList = waitingListData.find((list: waitingListType) => list?.seat?.seatId === seatId);
-
-
-                if (tempWaitingList) {
-
-                    console.log("tempWaitingList : ", tempWaitingList);
-
-                    setWaitingList(tempList.find((list: waitingListType) => list?.seat?.seatId === seatId));
-
-                    console.log("waitingList",waitingList);
+                if (filteredWaitingList.length > 0) {
+                    setUserId(filteredWaitingList.find(item => item.seat.seatId === seatId)?.user.userId);
                 }
+            } catch (error) {
+                console.error('Error fetching waiting list:', error);
             }
-            if (waitingList?.seatNumber === value && waitingList.user.userName === getUserName()) {
-                console.log("valied")
 
-            }
-        }
+        };
 
-        getWaitingList();
-
-    }, []);
-
-    const getUserName = () => {
-
-        const token = localStorage.getItem('token');
-
-        if (token) {
-            const decodedToken = jwtDecode<CustomJwtPayload>(token);
-            const userName = decodedToken?.sub || decodedToken?.userName || decodedToken?.username || decodedToken?.name;
-            console.log(userName);
-
-            return userName;
-        }
-
-        return "";
-    }
-
-
+        fetchWaitingList();
+    }, [seatId,filteredWaitingList]);
 
     return (
-        <button className={`m-2 p-2 seatButton ${isSeatAvailable ? 'notSelected' : ''}`} disabled={!isSeatAvailable}
+        <button
+            className={`m-2 p-3 seatButton ${
+                filteredWaitingList.some(list =>
+                list.seat.seatId === seatId && list.seatNumber.trim().toLowerCase() === value.trim().toLowerCase() && list.user.userId === userId
+            )
+
+                    ? 'Selected' : isSeatAvailable ? 'notSelected' : ''}`}
+            disabled={!isSeatAvailable}
             onClick={() => {
                 bookSeat(seatId, isSeatAvailable, value);
             }}
         >
-            {!isSeatAvailable ? waitingList?.seatNumber === value ? 'In Waiting List' : 'Booked' : value}
-            {/* booked or waiting list */}
+            {
+                filteredWaitingList.some(list =>
+                    list.seat.seatId === seatId && list.seatNumber.trim().toLowerCase() === value.trim().toLowerCase() && list.user.userId === userId
+                )
+                    ? 'In waiting list'
+                    : !isSeatAvailable
+                        ? 'Booked'
+                        : value
+
+            }
         </button>
     );
+
 }
 
 export default SeatButton;

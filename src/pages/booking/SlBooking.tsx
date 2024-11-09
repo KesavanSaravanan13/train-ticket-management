@@ -87,7 +87,7 @@ const SlBooking = () => {
 
         getTrainDetails();
 
-    }, []);
+    }, [value]);
 
     const bookSeat = async (seatId: BigInt, isSeatAvailable: Boolean, value: String ) => {
 

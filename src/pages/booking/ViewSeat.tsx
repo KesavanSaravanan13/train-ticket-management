@@ -4,102 +4,62 @@ import fromTrain from '../../assests/train-from.png';
 import ToTrain from '../../assests/train-to.png';
 import map from '../../assests/map.png';
 import { Col, Row } from "react-bootstrap";
-import axios from "axios";
 import '../../css/SlBooking.css';
-import { SeatType } from "./SlBooking";
 import { trainType } from "../dashboard/Dashboard";
-import { jwtDecode } from "jwt-decode";
-import { CustomJwtPayload, userListType } from "../user-profile/UserProfile";
+import { SeatType } from "./SlBooking";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 interface viewSeatTpe {
     viewSeat: boolean;
     setViewSeat: (value: boolean) => void;
+    payload: SeatType | undefined;
     seatId: BigInt | undefined;
+    trainNumber: string | undefined;
     value: String | undefined;
 }
 
-const ViewSeat: React.FC<viewSeatTpe> = ({ viewSeat, setViewSeat, seatId, value }) => {
+const ViewSeat: React.FC<viewSeatTpe> = ({ viewSeat, seatId, setViewSeat, payload, trainNumber, value }) => {
 
-    const [seat, setSeat] = useState<SeatType>();
+    const navigate = useNavigate();
     const [train, setTrain] = useState<trainType>();
+    const [trainData, setTrainData] = useState<trainType[]>([]);
     const [closeButton, setCloseButton] = useState(false);
 
-
-    const [user, setUser] = useState<userListType>();
-    const [username, setUsername] = useState<string>();
-    const [userList, setUserList] = useState<userListType[]>([]);
-
-
     useEffect(() => {
-        const getSeat = async () => {
+        const getTrain = async () => {
             const token = localStorage.getItem('token');
-
-            try {
-                const responseSeat = await axios.get(`http://localhost:8080/api/Seat/${seatId}`, {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                });
-                const seatTemp = responseSeat.data;
-                setSeat(seatTemp);
-
-                if (seatTemp?.slCompartment?.train?.trainId) {
-                    const responseTrain = await axios.get(`http://localhost:8080/api/trains/${seatTemp.slCompartment.train.trainId}`, {
-                        headers: {
-                            Authorization: `Bearer ${token}`
-                        }
-                    });
-                    const trainTemp = responseTrain.data;
-                    setTrain(trainTemp);
+            const response = await axios.get(`http://localhost:8080/api/trains`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
                 }
-            } catch (error) {
-                console.error("Error fetching data:", error);
+            })
+
+            const tempData = response.data;
+
+            if (tempData.length > 0) {
+                setTrainData(tempData);
             }
-        };
 
-        getSeat();
-    }, [seatId]);
+            const tempTrain = tempData.find((list: trainType) => list.trainNumber === Number(trainNumber));
 
+            if (tempTrain) {
+                setTrain(tempTrain);
+            }
 
-    const waitListSeat = async () => {
+        }
+        getTrain();
+    }, [])
+
+    const bookSeat = async () => {
 
         const token = localStorage.getItem('token');
-        if (!token) return;
-        const userListResponse = await axios.get('http://localhost:8080/user', {
+        await axios.put(`http://localhost:8080/api/Seat/${seatId}`, payload, {
             headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        });
-        setUserList(userListResponse.data);
-
-        const decodedToken = jwtDecode<CustomJwtPayload>(token);
-        const userName: string | undefined = decodedToken?.sub || decodedToken?.userName || decodedToken?.username || decodedToken?.name;
-        setUsername(userName);
-
-        const currentUser = userListResponse.data.find((user: userListType) => user.userName.trim().toLowerCase() === userName?.trim().toLowerCase());
-
-        if (currentUser?.userId) {
-            const currentUserResponse = await axios.get(`http://localhost:8080/user/${currentUser.userId}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-            setUser(currentUserResponse.data);
-
-            const tempPlayload = {
-                seat: seat,
-                seatNumber: value,
-                user: currentUserResponse.data,
+                Authorization: `Bearer ${token}`
             }
+        })
 
-            const response = await axios.post(`http://localhost:8080/api/waitingList`, tempPlayload, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-        }
-
-        setViewSeat(!viewSeat)
     }
 
 
@@ -136,7 +96,9 @@ const ViewSeat: React.FC<viewSeatTpe> = ({ viewSeat, setViewSeat, seatId, value 
                     <h6 className="m-0 p-0 col">Confirm the seat by clicking "<span className="m-0 p-0 text-success confirmText">confirm</span>"</h6>
                     <button className="m-0 p-2 px-3 col-2 confirmButton"
                         onClick={() => {
-                            waitListSeat();
+                            bookSeat();
+                            setViewSeat(!viewSeat);
+                            navigate('/dashboard');
                         }}
                     >
                         confirm
@@ -146,7 +108,7 @@ const ViewSeat: React.FC<viewSeatTpe> = ({ viewSeat, setViewSeat, seatId, value 
             <button className={`m-0 p-2 closeButton col-1`}
                 onMouseEnter={() => { setCloseButton(!closeButton) }}
                 onMouseLeave={() => { setCloseButton(!closeButton) }}
-                onClick={() => {
+                onClick={async () => {
                     setViewSeat(!viewSeat);
                 }}
             >

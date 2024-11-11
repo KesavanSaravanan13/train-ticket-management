@@ -33,7 +33,13 @@ const MenuButton = () => {
             {menuList.map((list, index) => (
                 <Row className="m-0 p-0 py-3" key={index}>
                     <Button className="btn m-0 p-2 w-auto menuItem " onClick={() => {
-                        list.value === "User Profile" ? navigate('/userProfile') : navigate('/dashboard');
+                        if (list.value === "User Profile")
+                            navigate('/userProfile')
+                        else if (list.value === "Booked Tickets") {
+                            navigate('/booked-seats')
+                        } else {
+                            navigate('/dashboard');
+                        }
                     }}
                         onMouseEnter={() => { list.setMenu(!list.menu) }}
                         onMouseLeave={() => { list.setMenu(!list.menu) }}>

@@ -6,7 +6,7 @@
     background-color: white;
 }
 
-.seatButton {
+.seatButton{
     width: 75px;
     height: 100px;
     border: none;
@@ -18,7 +18,8 @@
 .compartment {
     border: 2px solid gray;
     border-radius: 25px;
-    width: fit-content;
+    height: 275px;
+    /* width: fit-content; */
 }
 
 .notSelected {
@@ -79,4 +80,23 @@
     top: 50px;
     right: 50px;
     width: fit-content;
+}
+
+.twoSeatButton{
+    height: 100%;
+    width: 100%;
+    border: none;
+    outline-offset: none;
+    outline: none;
+    border-radius: 25px;
+}
+
+.insideRow{
+    height: 50% !important;
+    width: 100% !important;
+}
+
+.sideRow{
+    height: 100% !important;
+    width: 100% !important;
 }

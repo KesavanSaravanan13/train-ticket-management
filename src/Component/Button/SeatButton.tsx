@@ -1,83 +1,163 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { SeatType } from "../../pages/booking/SlBooking";
-import { CustomJwtPayload, userListType } from "../../pages/user-profile/UserProfile";
-import { jwtDecode } from "jwt-decode";
-
-interface waitingListType {
-    waitingListId: BigInt;
-    seat: SeatType;
-    user: userListType;
-    seatNumber: String;
-}
+import axios from "axios";
+import { Row } from "react-bootstrap";
 
 type SeatButtonProps = {
+    viewSeat: boolean;
+    setViewSeat: (value: boolean) => void;
     isSeatAvailable: Boolean;
-    value: String;
-    seatId: BigInt;
-    bookSeat: (seatId: BigInt, isSeatAvailable: Boolean, value: String) => void;
+    valueParameter: String;
+    seat: SeatType[];
+    seatId: BigInt | undefined;
+    setSeatId: (value: BigInt) => void;
+    setPayload: (value: SeatType) => void;
+    setValue: (value: String | undefined) => void;
+    compartment: String | undefined;
+    // bookSeat: (seatId: BigInt, isSeatAvailable: Boolean, value: String) => void;
 
 };
 
-const SeatButton: React.FC<SeatButtonProps> = ({ isSeatAvailable, value, seatId, bookSeat }) => {
+const SeatButton: React.FC<SeatButtonProps> = ({ setValue, viewSeat, setViewSeat, isSeatAvailable, valueParameter, seat, seatId, setSeatId, setPayload, compartment }) => {
 
-    const [filteredWaitingList, setFilteredWaitingList] = useState<waitingListType[]>([]);
-    const [userId, setUserId] = useState<BigInt>();
+
+    const [afterPayload, setAfterPayload] = useState<Boolean>(false);
 
     useEffect(() => {
-        const fetchWaitingList = async () => {
+        setValue(valueParameter);
+    }, [valueParameter]);
 
-            const token = localStorage.getItem("token");
-            try {
-                const response = await axios.get<waitingListType[]>('http://localhost:8080/api/waitingList', {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                });
-                const waitingListData = response.data;
 
-                const matchingSeats = waitingListData.filter(item => item.seat.seatId === seatId);
+    const bookSeat = async (seatId: BigInt | undefined, isSeatAvailable: Boolean | undefined, value: String | undefined) => {
+        setValue(value);
+        const subValue = value?.substring(5,).split(" ");
 
-                if (matchingSeats.length > 0) {
-                    setFilteredWaitingList(matchingSeats);
+        seat.forEach(list => {
+            if (subValue) {
+                switch (subValue[0]) {
+                    case "One":
+                        if (subValue[1] === "A") {
+                            if (list.seatId === seatId) {
+                                console.log(list.seatOneA);
+
+                                list.seatOneA = !isSeatAvailable;
+
+                                console.log(list.seatOneA);
+                                setSeatId(list.seatId);
+                                setViewSeat(!viewSeat);
+                            }
+                        } else {
+                            if (list.seatId === seatId) {
+                                list.seatOneB = !isSeatAvailable;
+                                setSeatId(list.seatId);
+                                setViewSeat(!viewSeat);
+                            }
+                        }
+                        break;
+
+                    case "Two":
+                        if (subValue[1] === "A") {
+                            if (list.seatId === seatId) {
+                                list.seatTwoA = !isSeatAvailable;
+                                setSeatId(list.seatId);
+                                setViewSeat(!viewSeat);
+                            }
+                        } else {
+                            if (list.seatId === seatId) {
+                                list.seatTwoB = !isSeatAvailable;
+                                setSeatId(list.seatId);
+                                setViewSeat(!viewSeat);
+                            }
+                        }
+                        break;
+
+                    case "Three":
+                        if (subValue[1] === "A") {
+                            if (list.seatId === seatId) {
+                                list.seatThreeA = !isSeatAvailable;
+                                setSeatId(list.seatId);
+                                setViewSeat(!viewSeat);
+                            }
+                        } else {
+                            if (list.seatId === seatId) {
+                                list.seatThreeB = !isSeatAvailable;
+                                setSeatId(list.seatId);
+                                setViewSeat(!viewSeat);
+                            }
+                        }
+                        break;
+
+                    case "Four":
+                        if (subValue[1] === "A") {
+                            if (list.seatId === seatId) {
+                                list.seatFourA = !isSeatAvailable;
+                                setSeatId(list.seatId);
+                                setViewSeat(!viewSeat);
+                            }
+                        } else {
+                            if (list.seatId === seatId) {
+                                list.seatFourB = !isSeatAvailable;
+                                setSeatId(list.seatId);
+                                setViewSeat(!viewSeat);
+                            }
+                        }
+                        break;
+
+                    case "Five":
+                        if (list.seatId === seatId) {
+                            list.seatFiveA = !isSeatAvailable;
+                            setSeatId(list.seatId);
+                            setViewSeat(!viewSeat);
+                        }
+                        break;
+
+                    case "Six":
+                        if (list.seatId === seatId) {
+                            list.seatSixA = !isSeatAvailable;
+                            setSeatId(list.seatId);
+                            setViewSeat(!viewSeat);
+                        }
+                        break;
                 }
-
-                if (filteredWaitingList.length > 0) {
-                    setUserId(filteredWaitingList.find(item => item.seat.seatId === seatId)?.user.userId);
-                }
-            } catch (error) {
-                console.error('Error fetching waiting list:', error);
             }
+        });
 
-        };
+        const seatTemp = seat.find(list => list.seatId === seatId);
 
-        fetchWaitingList();
-    }, [seatId,filteredWaitingList]);
+        if (seatTemp) {
+            setPayload(seatTemp);
+            setAfterPayload(!afterPayload);
+        }
+
+    }
 
     return (
-        <button
-            className={`m-2 p-3 seatButton ${
-                filteredWaitingList.some(list =>
-                list.seat.seatId === seatId && list.seatNumber.trim().toLowerCase() === value.trim().toLowerCase() && list.user.userId === userId
-            )
+        <>
+            {compartment === 'sl' ?
 
-                    ? 'Selected' : isSeatAvailable ? 'notSelected' : ''}`}
-            disabled={!isSeatAvailable}
-            onClick={() => {
-                bookSeat(seatId, isSeatAvailable, value);
-            }}
-        >
-            {
-                filteredWaitingList.some(list =>
-                    list.seat.seatId === seatId && list.seatNumber.trim().toLowerCase() === value.trim().toLowerCase() && list.user.userId === userId
-                )
-                    ? 'In waiting list'
-                    : !isSeatAvailable
-                        ? 'Booked'
-                        : value
+                <button className={`m-1 p-2 seatButton ${!isSeatAvailable && !afterPayload ? '' : 'notSelected'}`} disabled={!isSeatAvailable && !afterPayload}
+                    onClick={() => {
+                        bookSeat(seatId, isSeatAvailable, valueParameter);
+                        setViewSeat(!viewSeat);
+                    }}
+                >
+                    {!isSeatAvailable && !afterPayload ? 'Booked' : valueParameter}
+                </button>
 
+                :
+
+                <Row className={`m-0 p-2 pb-4   ${compartment==='side'?'sideRow':'insideRow'}`}>
+                    <button className={`m-1 p-2 col-12 twoSeatButton ${!isSeatAvailable && !afterPayload ? '' : 'notSelected'}`} disabled={!isSeatAvailable && !afterPayload}
+                        onClick={() => {
+                            bookSeat(seatId, isSeatAvailable, valueParameter);
+                            setViewSeat(!viewSeat);
+                        }}
+                    >
+                        {!isSeatAvailable && !afterPayload ? 'Booked' : valueParameter}
+                    </button>
+                </Row>
             }
-        </button>
+        </>
     );
 
 }

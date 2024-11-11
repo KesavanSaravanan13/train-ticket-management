@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { trainType } from "../dashboard/Dashboard";
 import { Col, Row } from "react-bootstrap";
-import SeatButton from "../../Component/Button/SeatButton";
 import ViewSeat from "./ViewSeat";
+import SeatButton from "../../Component/Button/SeatButton";
 
 interface slType {
     slCompartmentId: BigInt;
@@ -41,17 +41,19 @@ export interface SeatType {
 export interface bookSeatType {
     seatId: BigInt;
     isSeatAvailable: Boolean;
-    value: String;
+    valueParameter: String;
 }
 
 const SlBooking = () => {
 
     const [viewSeat, setViewSeat] = useState<boolean>(false);
     const [seatId, setSeatId] = useState<BigInt>();
-    const [value,setValue] = useState<String>();
 
+    const [value, setValue] = useState<String>();
     const { trainNumber } = useParams<string>();
     const [seat, setSeat] = useState<SeatType[]>([]);
+
+    const [payload, setPayload] = useState<SeatType>();
 
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -84,113 +86,9 @@ const SlBooking = () => {
 
             setSeat(filteredSeats);
         }
-
         getTrainDetails();
 
-    }, [value]);
-
-    const bookSeat = async (seatId: BigInt, isSeatAvailable: Boolean, value: String ) => {
-
-        const token = localStorage.getItem('token');
-        setValue(value);
-        const subValue = value.substring(5,).split(" ");
-
-        seat.forEach(list => {
-            switch (subValue[0]) {
-                case "One":
-                    if (subValue[1] === "A") {
-                        if (list.seatId === seatId) {
-                            // list.seatOneA = !isSeatAvailable;
-                            setSeatId(list.seatId);
-                            setViewSeat(!viewSeat);
-                        }
-                    } else {
-                        if (list.seatId === seatId) {
-                            // list.seatOneB = !isSeatAvailable;
-                            setSeatId(list.seatId);
-                            setViewSeat(!viewSeat);
-                        }
-                    }
-                    break;
-
-                case "Two":
-                    if (subValue[1] === "A") {
-                        if (list.seatId === seatId) {
-                            // list.seatTwoA = !isSeatAvailable;
-                            setSeatId(list.seatId);
-                            setViewSeat(!viewSeat);
-                        }
-                    } else {
-                        if (list.seatId === seatId) {
-                            // list.seatTwoB = !isSeatAvailable;
-                            setSeatId(list.seatId);
-                            setViewSeat(!viewSeat);
-                        }
-                    }
-                    break;
-
-                case "Three":
-                    if (subValue[1] === "A") {
-                        if (list.seatId === seatId) {
-                            // list.seatThreeA = !isSeatAvailable;
-                            setSeatId(list.seatId);
-                            setViewSeat(!viewSeat);
-                        }
-                    } else {
-                        if (list.seatId === seatId) {
-                            // list.seatThreeB = !isSeatAvailable;
-                            setSeatId(list.seatId);
-                            setViewSeat(!viewSeat);
-                        }
-                    }
-                    break;
-
-                case "Four":
-                    if (subValue[1] === "A") {
-                        if (list.seatId === seatId) {
-                            // list.seatFourA = !isSeatAvailable;
-                            setSeatId(list.seatId);
-                            setViewSeat(!viewSeat);
-                        }
-                    } else {
-                        if (list.seatId === seatId) {
-                            // list.seatFourB = !isSeatAvailable;
-                            setSeatId(list.seatId);
-                            setViewSeat(!viewSeat);
-                        }
-                    }
-                    break;
-
-                case "Five":
-                    if (list.seatId === seatId) {
-                        // list.seatFiveA = !isSeatAvailable;
-                        setSeatId(list.seatId);
-                        setViewSeat(!viewSeat);
-                    }
-                    break;
-
-                case "Six":
-                    if (list.seatId === seatId) {
-                        // list.seatSixA = !isSeatAvailable;
-                        setSeatId(list.seatId);
-                        setViewSeat(!viewSeat);
-                    }
-                    break;
-            }
-        });
-
-        const seatTemp = seat.find(list => list.seatId === seatId);
-
-        // need to give a verfication before updating the content of the updating books or else need to pass it to the admin.
-
-        // if admin handeling : put should be by them
-
-        // await axios.put(`http://localhost:8080/api/Seat/${seatId}`, seatTemp, {
-        //     headers: {
-        //         Authorization: `Bearer ${token}`
-        //     }
-        // })
-    }
+    }, [viewSeat]);
 
     return (
         <Row className="m-0 p-0 vh-100 d-flex justify-content-center align-items-center seatBooking position-relative">
@@ -199,27 +97,27 @@ const SlBooking = () => {
                     seat.filter(seatList => seatList.slCompartment !== null).map((seatList, index) => (
                         <Row className="m-2 p-3 compartment" key={index}>
                             <Col className="m-0 p-0 col-4">
-                                <SeatButton isSeatAvailable={seatList.seatOneB} value={"seat One B"} seatId={seatList.seatId} bookSeat={bookSeat} />
-                                <SeatButton isSeatAvailable={seatList.seatTwoB} value={"seat Two B"} seatId={seatList.seatId} bookSeat={bookSeat} />
-                                <SeatButton isSeatAvailable={seatList.seatThreeB} value={"seat Three B"} seatId={seatList.seatId} bookSeat={bookSeat} />
-                                <SeatButton isSeatAvailable={seatList.seatFourB} value={"seat Four B"} seatId={seatList.seatId} bookSeat={bookSeat} />
+                                <SeatButton compartment={''} viewSeat={viewSeat} setValue={setValue} setViewSeat={setViewSeat} isSeatAvailable={seatList.seatOneB} valueParameter={"seat One B"} seat={seat} seatId={seatList.seatId} setPayload={setPayload} setSeatId={setSeatId} />
+                                <SeatButton compartment={''} viewSeat={viewSeat} setValue={setValue} setViewSeat={setViewSeat} isSeatAvailable={seatList.seatTwoB} valueParameter={"seat Two B"} seat={seat} seatId={seatList.seatId} setPayload={setPayload} setSeatId={setSeatId} />
+                                <SeatButton compartment={''} viewSeat={viewSeat} setValue={setValue} setViewSeat={setViewSeat} isSeatAvailable={seatList.seatThreeB} valueParameter={"seat Three B"} seat={seat} seatId={seatList.seatId} setPayload={setPayload} setSeatId={setSeatId} />
+                                <SeatButton compartment={''} viewSeat={viewSeat} setValue={setValue} setViewSeat={setViewSeat} isSeatAvailable={seatList.seatFourB} valueParameter={"seat Four B"} seat={seat} seatId={seatList.seatId} setPayload={setPayload} setSeatId={setSeatId} />
                             </Col>
                             <Col className="m-0 p-0 col d-flex justify-content-center ">
                                 <div className="m-0 p-0 vr h-100"></div>
                             </Col>
                             <Col className="m-0 p-0 col-6">
-                                <SeatButton isSeatAvailable={seatList.seatOneA} value={"seat One A"} seatId={seatList.seatId} bookSeat={bookSeat} />
-                                <SeatButton isSeatAvailable={seatList.seatTwoA} value={"seat Two A"} seatId={seatList.seatId} bookSeat={bookSeat} />
-                                <SeatButton isSeatAvailable={seatList.seatThreeA} value={"seat Three A"} seatId={seatList.seatId} bookSeat={bookSeat} />
-                                <SeatButton isSeatAvailable={seatList.seatFourA} value={"seat Four A"} seatId={seatList.seatId} bookSeat={bookSeat} />
-                                <SeatButton isSeatAvailable={seatList.seatFiveA} value={"seat Five A"} seatId={seatList.seatId} bookSeat={bookSeat} />
-                                <SeatButton isSeatAvailable={seatList.seatSixA} value={"seat Six A"} seatId={seatList.seatId} bookSeat={bookSeat} />
+                                <SeatButton compartment={''} viewSeat={viewSeat} setValue={setValue} setViewSeat={setViewSeat} isSeatAvailable={seatList.seatOneA} valueParameter={"seat One A"} seat={seat} seatId={seatList.seatId} setPayload={setPayload} setSeatId={setSeatId} />
+                                <SeatButton compartment={''} viewSeat={viewSeat} setValue={setValue} setViewSeat={setViewSeat} isSeatAvailable={seatList.seatTwoA} valueParameter={"seat Two A"} seat={seat} seatId={seatList.seatId} setPayload={setPayload} setSeatId={setSeatId} />
+                                <SeatButton compartment={''} viewSeat={viewSeat} setValue={setValue} setViewSeat={setViewSeat} isSeatAvailable={seatList.seatThreeA} valueParameter={"seat Three A"} seat={seat} seatId={seatList.seatId} setPayload={setPayload} setSeatId={setSeatId} />
+                                <SeatButton compartment={''} viewSeat={viewSeat} setValue={setValue} setViewSeat={setViewSeat} isSeatAvailable={seatList.seatFourA} valueParameter={"seat Four A"} seat={seat} seatId={seatList.seatId} setPayload={setPayload} setSeatId={setSeatId} />
+                                <SeatButton compartment={''} viewSeat={viewSeat} setValue={setValue} setViewSeat={setViewSeat} isSeatAvailable={seatList.seatFiveA} valueParameter={"seat Five A"} seat={seat} seatId={seatList.seatId} setPayload={setPayload} setSeatId={setSeatId} />
+                                <SeatButton compartment={''} viewSeat={viewSeat} setValue={setValue} setViewSeat={setViewSeat} isSeatAvailable={seatList.seatSixA} valueParameter={"seat Six A"} seat={seat} seatId={seatList.seatId} setPayload={setPayload} setSeatId={setSeatId} />
                             </Col>
                         </Row>
                     ))
                 }
             </Col>
-            <ViewSeat viewSeat={viewSeat} setViewSeat={setViewSeat} seatId={seatId} value={value} />
+            <ViewSeat viewSeat={viewSeat} value={value} setViewSeat={setViewSeat} seatId={seatId} payload={payload} trainNumber={trainNumber} />
         </Row>
     )
 }

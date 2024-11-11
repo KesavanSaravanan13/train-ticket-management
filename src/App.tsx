@@ -7,6 +7,9 @@ import IndexPage from './pages/login/IndexPage';
 import Dashboard from './pages/dashboard/Dashboard';
 import UserProfile from './pages/user-profile/UserProfile';
 import SlBooking from './pages/booking/SlBooking';
+import BookedSeats from './pages/booked-seats/BookedSeats';
+import TwoABooking from './pages/booking/TwoABooking';
+import ThreeABooking from './pages/booking/ThreeABooking';
 
 
 function App() {
@@ -20,9 +23,12 @@ function App() {
         <Route element={<PrivateRouteOther />}>
           <Route path='/dashboard' element={<Dashboard />} />
           <Route path='/userProfile' element={<UserProfile/>} />
+          <Route path='/booked-seats' element={<BookedSeats/>} />
           <Route path='/sl-booking/:trainNumber' element={<SlBooking/>}/>
-          <Route path='/two-tier-booking/:trainNumber' element={<SlBooking/>}/>
-          <Route path='/three-tier-booking/:trainNumber' element={<SlBooking/>}/>
+          {/*--- yet to develop ---*/}
+          <Route path='/two-tier-booking/:trainNumber' element={<TwoABooking/>}/>
+          <Route path='/three-tier-booking/:trainNumber' element={<ThreeABooking/>}/>
+          {/*--- yet to develop ---*/}
         </Route>
       </Routes>
     </Router>

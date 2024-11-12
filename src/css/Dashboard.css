@@ -267,7 +267,7 @@ p {
     border-bottom-left-radius: 0px;
 }
 
-.guideLine p {
+.guideLine div {
     font-size: medium;
     background-color: rgb(184, 26, 26);
     border-radius: 25px;

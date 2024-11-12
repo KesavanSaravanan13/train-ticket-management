@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { SeatType } from "../../pages/booking/SlBooking";
-import axios from "axios";
 import { Row } from "react-bootstrap";
 
 type SeatButtonProps = {
@@ -14,7 +13,6 @@ type SeatButtonProps = {
     setPayload: (value: SeatType) => void;
     setValue: (value: String | undefined) => void;
     compartment: String | undefined;
-
 };
 
 const SeatButton: React.FC<SeatButtonProps> = ({ setValue, viewSeat, setViewSeat, isSeatAvailable, valueParameter, seat, seatId, setSeatId, setPayload, compartment }) => {
@@ -24,7 +22,7 @@ const SeatButton: React.FC<SeatButtonProps> = ({ setValue, viewSeat, setViewSeat
 
     useEffect(() => {
         setValue(valueParameter);
-    }, [valueParameter]);
+    }, [setValue,valueParameter]);
 
 
     const bookSeat = async (seatId: BigInt | undefined, isSeatAvailable: Boolean | undefined, value: String | undefined) => {

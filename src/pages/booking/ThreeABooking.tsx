@@ -75,7 +75,7 @@ const ThreeABooking = () => {
         }
         getTrainDetails();
 
-    }, [viewSeat]);
+    }, [trainNumber]);
 
     return (
         <Row className="m-0 p-0 vh-100 d-flex justify-content-center align-items-center seatBooking position-relative">

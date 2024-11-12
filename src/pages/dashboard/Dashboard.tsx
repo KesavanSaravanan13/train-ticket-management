@@ -3,7 +3,7 @@ import menu_bar from '../../assests/menu_bar.png';
 import { Button, Col, Row } from "react-bootstrap";
 import MenuButton from "../../Component/Button/MenuButton";
 import profile from '../../assests/user.png';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import TopRow, { initialValuesType } from './TopRow';
 import Weather from '../../utils/API/Weather';
 import SearchResult from './SearchResult';
@@ -67,7 +67,7 @@ const Dashboard = () => {
                             <h4 className='m-0 p-0 fw-bold text-center'>Follow <br />the<br /> Guidelines!</h4>
                         </Col>
                         <Col className='m-0 p-3 guideLine'>
-                            <p className='m-0 p-3 text-white'>
+                            <div className='m-0 p-3 text-white'>
                                 Here’s a quick guide for booking a train ticket online:<br /><br />
 
                                 <h6 className='m-0 p-0 ps-3 d-inline'>Search and Select:</h6> Enter travel details, choose a train and class (e.g., SL, 3A, 2A).<br />
@@ -77,10 +77,9 @@ const Dashboard = () => {
                                 <h6 className='m-0 p-0 ps-3 d-inline'>Download Ticket:</h6> Save or print your e-ticket.<br />
                                 <h6 className='m-0 p-0 ps-3 d-inline'>Travel Prepared:</h6> Carry a valid ID and reach the station on time.<br /><br />
                                 Always follow cancellation policies if plans change.<br />
-                            </p>
+                            </div>
                         </Col>
                     </Row>
-
                 </Col>
                 <Col className={`m-0 p-0 d-flex flex-shrink-1 justify-content-end col-2`}>
                     <Row className={`m-0 p-2 btn profileSection  d-flex  ${userprofile ? 'hideProfile justify-content-center' : 'showProfile justify-content-between'}`}

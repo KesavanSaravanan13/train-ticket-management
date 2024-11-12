@@ -14,7 +14,6 @@ type SeatButtonProps = {
     setPayload: (value: SeatType) => void;
     setValue: (value: String | undefined) => void;
     compartment: String | undefined;
-    // bookSeat: (seatId: BigInt, isSeatAvailable: Boolean, value: String) => void;
 
 };
 
@@ -38,11 +37,7 @@ const SeatButton: React.FC<SeatButtonProps> = ({ setValue, viewSeat, setViewSeat
                     case "One":
                         if (subValue[1] === "A") {
                             if (list.seatId === seatId) {
-                                console.log(list.seatOneA);
-
                                 list.seatOneA = !isSeatAvailable;
-
-                                console.log(list.seatOneA);
                                 setSeatId(list.seatId);
                                 setViewSeat(!viewSeat);
                             }
@@ -135,7 +130,7 @@ const SeatButton: React.FC<SeatButtonProps> = ({ setValue, viewSeat, setViewSeat
         <>
             {compartment === 'sl' ?
 
-                <button className={`m-1 p-2 seatButton ${!isSeatAvailable && !afterPayload ? '' : 'notSelected'}`} disabled={!isSeatAvailable && !afterPayload}
+                <button className={`m-1 p-2 seatButtonSl ${!isSeatAvailable && !afterPayload ? '' : 'notSelected'}`} disabled={!isSeatAvailable && !afterPayload}
                     onClick={() => {
                         bookSeat(seatId, isSeatAvailable, valueParameter);
                         setViewSeat(!viewSeat);
@@ -147,7 +142,7 @@ const SeatButton: React.FC<SeatButtonProps> = ({ setValue, viewSeat, setViewSeat
                 :
 
                 <Row className={`m-0 p-2 pb-4   ${compartment==='side'?'sideRow':'insideRow'}`}>
-                    <button className={`m-1 p-2 col-12 twoSeatButton ${!isSeatAvailable && !afterPayload ? '' : 'notSelected'}`} disabled={!isSeatAvailable && !afterPayload}
+                    <button className={`m-1 p-3 col-12 twoSeatButton ${!isSeatAvailable && !afterPayload ? '' : 'notSelected'}`} disabled={!isSeatAvailable && !afterPayload}
                         onClick={() => {
                             bookSeat(seatId, isSeatAvailable, valueParameter);
                             setViewSeat(!viewSeat);

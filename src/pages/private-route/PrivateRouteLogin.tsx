@@ -1,19 +1,16 @@
 import { Navigate, Outlet } from "react-router-dom";
-import Dashboard from "../dashboard/Dashboard";
-import IndexPage from "../login/IndexPage";
-
-
 
 export const PrivateRouteLogin = () => {
     const isAuthenticated = localStorage.getItem('token');
+
     return (
-        !isAuthenticated ? <Outlet /> :<Navigate to={'/dashboard'}/>
+        !isAuthenticated ? <Outlet /> : <Navigate to={'/dashboard'} />
     );
 }
 
 export const PrivateRouteOther = () => {
     const isAuthenticated = localStorage.getItem('token');
     return (
-        isAuthenticated ? <Outlet /> : <Navigate to={'/login'}/>
+        isAuthenticated ? <Outlet /> : <Navigate to={'/login'} />
     );
 }

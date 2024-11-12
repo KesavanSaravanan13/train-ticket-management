@@ -97,21 +97,21 @@ const SlBooking = () => {
                     seat.filter(seatList => seatList.slCompartment !== null).map((seatList, index) => (
                         <Row className="m-2 p-3 compartment" key={index}>
                             <Col className="m-0 p-0 col-4">
-                                <SeatButton compartment={''} viewSeat={viewSeat} setValue={setValue} setViewSeat={setViewSeat} isSeatAvailable={seatList.seatOneB} valueParameter={"seat One B"} seat={seat} seatId={seatList.seatId} setPayload={setPayload} setSeatId={setSeatId} />
-                                <SeatButton compartment={''} viewSeat={viewSeat} setValue={setValue} setViewSeat={setViewSeat} isSeatAvailable={seatList.seatTwoB} valueParameter={"seat Two B"} seat={seat} seatId={seatList.seatId} setPayload={setPayload} setSeatId={setSeatId} />
-                                <SeatButton compartment={''} viewSeat={viewSeat} setValue={setValue} setViewSeat={setViewSeat} isSeatAvailable={seatList.seatThreeB} valueParameter={"seat Three B"} seat={seat} seatId={seatList.seatId} setPayload={setPayload} setSeatId={setSeatId} />
-                                <SeatButton compartment={''} viewSeat={viewSeat} setValue={setValue} setViewSeat={setViewSeat} isSeatAvailable={seatList.seatFourB} valueParameter={"seat Four B"} seat={seat} seatId={seatList.seatId} setPayload={setPayload} setSeatId={setSeatId} />
+                                <SeatButton compartment={'sl'} viewSeat={viewSeat} setValue={setValue} setViewSeat={setViewSeat} isSeatAvailable={seatList.seatOneB} valueParameter={"seat One B"} seat={seat} seatId={seatList.seatId} setPayload={setPayload} setSeatId={setSeatId} />
+                                <SeatButton compartment={'sl'} viewSeat={viewSeat} setValue={setValue} setViewSeat={setViewSeat} isSeatAvailable={seatList.seatTwoB} valueParameter={"seat Two B"} seat={seat} seatId={seatList.seatId} setPayload={setPayload} setSeatId={setSeatId} />
+                                <SeatButton compartment={'sl'} viewSeat={viewSeat} setValue={setValue} setViewSeat={setViewSeat} isSeatAvailable={seatList.seatThreeB} valueParameter={"seat Three B"} seat={seat} seatId={seatList.seatId} setPayload={setPayload} setSeatId={setSeatId} />
+                                <SeatButton compartment={'sl'} viewSeat={viewSeat} setValue={setValue} setViewSeat={setViewSeat} isSeatAvailable={seatList.seatFourB} valueParameter={"seat Four B"} seat={seat} seatId={seatList.seatId} setPayload={setPayload} setSeatId={setSeatId} />
                             </Col>
                             <Col className="m-0 p-0 col d-flex justify-content-center ">
                                 <div className="m-0 p-0 vr h-100"></div>
                             </Col>
                             <Col className="m-0 p-0 col-6">
-                                <SeatButton compartment={''} viewSeat={viewSeat} setValue={setValue} setViewSeat={setViewSeat} isSeatAvailable={seatList.seatOneA} valueParameter={"seat One A"} seat={seat} seatId={seatList.seatId} setPayload={setPayload} setSeatId={setSeatId} />
-                                <SeatButton compartment={''} viewSeat={viewSeat} setValue={setValue} setViewSeat={setViewSeat} isSeatAvailable={seatList.seatTwoA} valueParameter={"seat Two A"} seat={seat} seatId={seatList.seatId} setPayload={setPayload} setSeatId={setSeatId} />
-                                <SeatButton compartment={''} viewSeat={viewSeat} setValue={setValue} setViewSeat={setViewSeat} isSeatAvailable={seatList.seatThreeA} valueParameter={"seat Three A"} seat={seat} seatId={seatList.seatId} setPayload={setPayload} setSeatId={setSeatId} />
-                                <SeatButton compartment={''} viewSeat={viewSeat} setValue={setValue} setViewSeat={setViewSeat} isSeatAvailable={seatList.seatFourA} valueParameter={"seat Four A"} seat={seat} seatId={seatList.seatId} setPayload={setPayload} setSeatId={setSeatId} />
-                                <SeatButton compartment={''} viewSeat={viewSeat} setValue={setValue} setViewSeat={setViewSeat} isSeatAvailable={seatList.seatFiveA} valueParameter={"seat Five A"} seat={seat} seatId={seatList.seatId} setPayload={setPayload} setSeatId={setSeatId} />
-                                <SeatButton compartment={''} viewSeat={viewSeat} setValue={setValue} setViewSeat={setViewSeat} isSeatAvailable={seatList.seatSixA} valueParameter={"seat Six A"} seat={seat} seatId={seatList.seatId} setPayload={setPayload} setSeatId={setSeatId} />
+                                <SeatButton compartment={'sl'} viewSeat={viewSeat} setValue={setValue} setViewSeat={setViewSeat} isSeatAvailable={seatList.seatOneA} valueParameter={"seat One A"} seat={seat} seatId={seatList.seatId} setPayload={setPayload} setSeatId={setSeatId} />
+                                <SeatButton compartment={'sl'} viewSeat={viewSeat} setValue={setValue} setViewSeat={setViewSeat} isSeatAvailable={seatList.seatTwoA} valueParameter={"seat Two A"} seat={seat} seatId={seatList.seatId} setPayload={setPayload} setSeatId={setSeatId} />
+                                <SeatButton compartment={'sl'} viewSeat={viewSeat} setValue={setValue} setViewSeat={setViewSeat} isSeatAvailable={seatList.seatThreeA} valueParameter={"seat Three A"} seat={seat} seatId={seatList.seatId} setPayload={setPayload} setSeatId={setSeatId} />
+                                <SeatButton compartment={'sl'} viewSeat={viewSeat} setValue={setValue} setViewSeat={setViewSeat} isSeatAvailable={seatList.seatFourA} valueParameter={"seat Four A"} seat={seat} seatId={seatList.seatId} setPayload={setPayload} setSeatId={setSeatId} />
+                                <SeatButton compartment={'sl'} viewSeat={viewSeat} setValue={setValue} setViewSeat={setViewSeat} isSeatAvailable={seatList.seatFiveA} valueParameter={"seat Five A"} seat={seat} seatId={seatList.seatId} setPayload={setPayload} setSeatId={setSeatId} />
+                                <SeatButton compartment={'sl'} viewSeat={viewSeat} setValue={setValue} setViewSeat={setViewSeat} isSeatAvailable={seatList.seatSixA} valueParameter={"seat Six A"} seat={seat} seatId={seatList.seatId} setPayload={setPayload} setSeatId={setSeatId} />
                             </Col>
                         </Row>
                     ))

@@ -63,19 +63,6 @@ const ThreeABooking = () => {
         }
 
         const getTrainDetails = async () => {
-
-            const slResponse = await axios.get(`http://localhost:8080/api/3a-compartments`, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            })
-
-            const SlSeat: threeAType[] = slResponse.data;
-            const SlSeatTemp = SlSeat.find(list => list.train.trainNumber === Number(trainNumber));
-
-            console.log("sl temp : ",SlSeatTemp);
-            
-
             const seatResponse = await axios.get(`http://localhost:8080/api/Seat`, {
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -83,23 +70,12 @@ const ThreeABooking = () => {
             });
 
             const tempSeat: SeatType[] = seatResponse.data;
-
-            console.log(tempSeat);
-
-            const filteredSeats = tempSeat.filter(list => list.threeACompartment?.threeACompartmentId === SlSeatTemp?.threeACompartmentId);
-
-            console.log("filter : ",filteredSeats);
-
-
-            if (filteredSeats.length > 0) {
-                setSeat(filteredSeats);
-            }
-            console.log(seat);
-
+            const filteredSeats = tempSeat.filter(list => list.threeACompartment?.train.trainNumber=== Number(trainNumber));
+            setSeat(filteredSeats);
         }
         getTrainDetails();
 
-    }, []);
+    }, [viewSeat]);
 
     return (
         <Row className="m-0 p-0 vh-100 d-flex justify-content-center align-items-center seatBooking position-relative">

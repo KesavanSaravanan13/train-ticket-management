@@ -64,15 +64,6 @@ const TwoABooking = () => {
 
         const getTrainDetails = async () => {
 
-            const slResponse = await axios.get(`http://localhost:8080/api/2a-compartments`, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            })
-
-            const SlSeat: twoAType[] = slResponse.data;
-            const SlSeatTemp = SlSeat.filter(list => list.train.trainNumber === Number(trainNumber));
-
             const seatResponse = await axios.get(`http://localhost:8080/api/Seat`, {
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -81,16 +72,8 @@ const TwoABooking = () => {
 
             const tempSeat: SeatType[] = seatResponse.data;
 
-            const filteredSeats = tempSeat.filter(list =>
-                SlSeatTemp.some(item => item.twoACompartmentId === list.twoACompartment?.twoACompartmentId)
-            );
-            console.log(filteredSeats);
-
-            if (filteredSeats.length > 0) {
-                setSeat(filteredSeats);
-            }
-            console.log(seat);
-
+            const filteredSeats = tempSeat.filter(list => list.twoACompartment?.train.trainNumber=== Number(trainNumber));
+            setSeat(filteredSeats);
         }
         getTrainDetails();
 

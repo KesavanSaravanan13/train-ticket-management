@@ -46,6 +46,8 @@ const UserProfile = () => {
                     setUserList(userListResponse.data);
 
                     const decodedToken = jwtDecode<CustomJwtPayload>(token);
+                    console.log(decodedToken);
+                    
                     const userName = decodedToken?.sub || decodedToken?.userName || decodedToken?.username || decodedToken?.name;
                     setUsername(userName || "");
 

@@ -3,7 +3,7 @@ import menu_bar from '../../assests/menu_bar.png';
 import { Button, Col, Row } from "react-bootstrap";
 import MenuButton from "../../Component/Button/MenuButton";
 import profile from '../../assests/user.png';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import TopRow, { initialValuesType } from './TopRow';
 import Weather from '../../utils/API/Weather';
 import SearchResult from './SearchResult';
@@ -34,7 +34,6 @@ const Dashboard = () => {
 
     const [showSearch, setShowSearch] = useState(false);
     const [values, setValues] = useState<initialValuesType>();
-
 
     return (
         <>
